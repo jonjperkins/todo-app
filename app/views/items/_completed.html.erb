@@ -1,0 +1,10 @@
+<div class="complete">
+      <%= link_to "Mark as complete", complete_list_item_path(@list, item), method: :patch %>
+  </div>
+  <div class="item">
+    <p style="opacity: 0.4;"><strike><%= item.content %></strike></p>
+  </div>
+  <div class="trash">
+    <%= link_to 'Delete', list_item_path(@list, item), method: :delete, data: { confirm: "Are you sure?" } %>
+  </div>
+</div>
