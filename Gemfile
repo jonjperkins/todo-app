@@ -48,3 +48,4 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'font-awesome-sass', '~> 4.7.0'
+gem "bootstrap-sass", "~> 3.1.1.0"
