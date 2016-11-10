@@ -1,5 +1,4 @@
-<p id="notice"><%= notice %></p>
-
+<% if user_signed_in? %>
 <div class="container">
   <div class="row">
     <div class="col-xs-10 col-xs-offset-1" id="index-page">
@@ -11,15 +10,31 @@
             <div class="title text-center">New list</div>
             <div class="text-center"><i class="glyphicon glyphicon-plus-sign" id="new-list-button"></i></div>
           </div>
-          <% @lists.reverse.each do |list| %>
-            <div class="col-xs-4 list-boxes text-center"> 
-              <%= link_to list.title, list %>
-              <div class="title"><%= list.title %></div>
-              <div id="items-left-description"><%= pluralize list.items.count, "item"%> on this list</div>
-            </div>
+          <% if current_user.lists.count > 0 %>
+            <% current_user.lists.reverse.each do |list| %>
+              <div class="col-xs-4 list-boxes text-center"> 
+                <%= link_to list.title, list %>
+                <div class="title"><%= list.title %></div>
+                <div id="items-left-description"><%= pluralize list.items.count, "item"%> on this list</div>
+              </div>
+            <% end %>
           <% end %>
           </div>
       </div> 
     </div>
   </div>
 </div>
+<% else %>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-10 col-xs-offset-1" id="index-page">
+        <div class="row">
+          <h1 class="text-center" id="index-title">Liszts</h1>
+          <h3 class="text-center">
+            <%= link_to "Log in", new_user_session_path %> or <%= link_to "sign up", new_user_registration_path %> to get started.
+          </h3>
+        </div>
+      </div>
+    </div>  
+  </div>
+<% end %>  
